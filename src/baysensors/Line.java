@@ -102,7 +102,7 @@ public class Line {
 			if (this.yIntercept() != 0.0) {
 				yInterceptClean = this.yIntercept() + "";
 			}
-			if (this.yIntercept() > 0.0) {
+			if (this.yIntercept() > 0.0 && this.slope() != 0.0) {
 				operator = "+";
 			}
 			if (this.slope() == 0.0 && this.yIntercept() == 0.0) {

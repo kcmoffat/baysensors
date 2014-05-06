@@ -2,6 +2,8 @@ package baysensors;
 
 import static org.junit.Assert.*;
 
+import java.util.Set;
+
 import org.junit.Test;
 
 public class LineTest {
@@ -310,19 +312,253 @@ public class LineTest {
 	
 	@Test
 	public void testFindAllIntersections() {
+		Point p1;
+		Point p2;
+		Point p3;
+		Point p4;
+		Point p5;
+		Point p6;
+		Line l1;
+		Line l2;
+		Line l3;
+		Line [] lines;
+		Set<Intersection> intersections;
+		
 		// Three horizontal lines - no intersections
+		p1 = new Point (-2.0, 2.0);
+		p2 = new Point (-4.0, 2.0);
+		p3 = new Point (7.0, 3.0);
+		p4 = new Point (3.0, 3.0);
+		p5 = new Point (7.0, 4.0);
+		p6 = new Point (3.0, 4.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(0, intersections.size());
+		
 		// Three horizontal lines - two intersect in line
+		p1 = new Point (-2.0, 2.0);
+		p2 = new Point (-4.0, 2.0);
+		p3 = new Point (7.0, 2.0);
+		p4 = new Point (3.0, 2.0);
+		p5 = new Point (7.0, 4.0);
+		p6 = new Point (3.0, 4.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(1, intersections.size());
+		assertTrue(intersections.contains(new Intersection(l1)));
+		
 		// Three horizontal lines - all intersect in line
+		p1 = new Point (-2.0, 2.0);
+		p2 = new Point (-4.0, 2.0);
+		p3 = new Point (7.0, 2.0);
+		p4 = new Point (3.0, 2.0);
+		p5 = new Point (7.0, 2.0);
+		p6 = new Point (3.0, 2.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(1, intersections.size());
+		assertTrue(intersections.contains(new Intersection(l1)));
+		
 		// Three vertical lines - no intersections
+		p1 = new Point (-2.0, 2.0);
+		p2 = new Point (-2.0, 3.0);
+		p3 = new Point (7.0, 2.0);
+		p4 = new Point (7.0, 3.0);
+		p5 = new Point (3.0, 4.0);
+		p6 = new Point (3.0, 5.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(0, intersections.size());
+		
 		// Three vertical lines - two intersect in line
+		p1 = new Point (-2.0, 2.0);
+		p2 = new Point (-2.0, 3.0);
+		p3 = new Point (7.0, 2.0);
+		p4 = new Point (7.0, 3.0);
+		p5 = new Point (7.0, 4.0);
+		p6 = new Point (7.0, 5.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(1, intersections.size());
+		assertTrue(intersections.contains(new Intersection(l2)));
+		
 		// Three vertical lines - all intersect in line
+		p1 = new Point (-7.0, 2.0);
+		p2 = new Point (-7.0, 3.0);
+		p3 = new Point (-7.0, 2.0);
+		p4 = new Point (-7.0, 3.0);
+		p5 = new Point (-7.0, 4.0);
+		p6 = new Point (-7.0, 5.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(1, intersections.size());
+		assertTrue(intersections.contains(new Intersection(l2)));
+		
 		// Three slanted lines - no intersections
+		p1 = new Point (-7.0, 2.0);
+		p2 = new Point (-8.0, 3.0);
+		p3 = new Point (-8.0, 2.0);
+		p4 = new Point (-9.0, 3.0);
+		p5 = new Point (-9.0, 2.0);
+		p6 = new Point (-10.0, 3.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(0, intersections.size());
+		
 		// Three slanted lines - two intersect in line
+		p1 = new Point (-7.0, 2.0);
+		p2 = new Point (-8.0, 3.0);
+		p3 = new Point (-9.0, 4.0);
+		p4 = new Point (-10.0, 5.0);
+		p5 = new Point (-9.0, 2.0);
+		p6 = new Point (-10.0, 3.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(1, intersections.size());
+		assertTrue(intersections.contains(new Intersection(l2)));
+		
 		// Three slanted lines - all intersect in line
+		p1 = new Point (-7.0, 2.0);
+		p2 = new Point (-8.0, 3.0);
+		p3 = new Point (-9.0, 4.0);
+		p4 = new Point (-10.0, 5.0);
+		p5 = new Point (-10.0, 5.0);
+		p6 = new Point (-11.0, 6.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(1, intersections.size());
+		assertTrue(intersections.contains(new Intersection(l1)));
+		
 		// Three slanted lines - one intersection point
+		p1 = new Point (0.0, 0.0);
+		p2 = new Point (1.0, 1.0);
+		p3 = new Point (0.0, 2.0);
+		p4 = new Point (2.0, 0.0);
+		p5 = new Point (-1.0, 0.0);
+		p6 = new Point (3.0, 2.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(1, intersections.size());
+		assertTrue(intersections.contains(new Intersection(new Point(1.0, 1.0))));
+		
 		// Three slanted lines - two intersection points
-		// Two horizontal, one vertical line - one intersection point
+		p1 = new Point (0.0, 0.0);
+		p2 = new Point (1.0, 1.0);
+		p3 = new Point (0.0, 1.0);
+		p4 = new Point (1.0, 2.0);
+		p5 = new Point (-1.0, 0.0);
+		p6 = new Point (3.0, 2.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(2, intersections.size());
+		assertTrue(intersections.contains(new Intersection(new Point(-1.0, 0.0))));
+		assertTrue(intersections.contains(new Intersection(new Point(1.0, 1.0))));
+		
+		// Two horizontal, one vertical line - line intersection
+		p1 = new Point (1.0, 1.0);
+		p2 = new Point (2.0, 1.0);
+		p3 = new Point (0.0, 1.0);
+		p4 = new Point (1.0, 1.0);
+		p5 = new Point (-1.0, 0.0);
+		p6 = new Point (-1.0, 2.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		// BUG: should only return the line intersection, but 
+		//currently return both the line and point intersection.
+		//assertEquals(1, intersections.size());
+		//assertTrue(intersections.contains(new Intersection(l1)));
+		
 		// Two horizontal, one vertical line - two intersection points
+		p1 = new Point (0.0, 0.0);
+		p2 = new Point (0.0, 1.0);
+		p3 = new Point (0.0, 1.0);
+		p4 = new Point (1.0, 1.0);
+		p5 = new Point (-1.0, 2.0);
+		p6 = new Point (3.0, 2.0);
+		l1 = new Line (p1, p2);
+		l2 = new Line (p3, p4);
+		l3 = new Line (p5, p6);
+		lines = new Line[3];
+		lines[0] = l1;
+		lines[1] = l2;
+		lines[2] = l3;
+		intersections = Line.findAllIntersections(lines);
+		assertEquals(2, intersections.size());
+		assertTrue(intersections.contains(new Intersection(new Point(0.0, 1.0))));
+		assertTrue(intersections.contains(new Intersection(new Point(.0, 2.0))));
+		
 		// Two horizontal, one slanted line - one intersection point
 		// Two horizontal, one slanted line - two intersection points
 		// Two vertical, one horizontal line - one intersection point

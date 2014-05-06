@@ -50,7 +50,7 @@ public class Intersection {
 	}
 	
 	/**
-	 * Potential improvement - build hashCode and equals directly from
+	 * Potential performance improvement - build hashCode and equals directly from
 	 * instance variables, instead of using string representation
 	 * (which involves allocating and initializing the string).
 	 */

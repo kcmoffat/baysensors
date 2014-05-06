@@ -30,9 +30,10 @@ public class IntersectionTest {
 	
 	@Test
 	public void testEquals() {
-		// Two Points
-		// Two Lines
-		// Two no intersections
+		// Two Points - not equal
+		// Two Points - equal
+		// Two Lines - not equal
+		// Two Lines - equal
 		// Point and Line
 		// Point and vertical Line
 		// Point and no intersection
